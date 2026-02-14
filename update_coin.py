@@ -44,9 +44,8 @@ def get_coin_data():
             
     return results
 
-# 수정 전: ...cbwIpTg... (대문자 I - 오답)
-# 수정 후: ...cbwlpTg... (소문자 l - 정답)
-WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwlpTg25tibNN3zgQ4UGLX45pqokONs-U1jVT3sbbB1NRZnRyG4M_LDL4yR6GYUecqVyg/exec"
+
+WEB_APP_URL ="https://script.google.com/macros/s/AKfycbwIpTg25tibNN3zgQ4UGLX45pqokONs-U1jVT3sbBb1NRZnRyG4M_LDL4yR6GYUecqVyg/exec"
 
 if __name__ == "__main__":
     data = get_coin_data()
