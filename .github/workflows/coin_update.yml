@@ -1,0 +1,21 @@
+name: Coin Premium Update
+
+on:
+  schedule:
+    # 30분 간격으로 실행 (매시 5분, 35분)
+    - cron: '5,35 * * * *'
+  workflow_dispatch: # 수동 실행 버튼
+
+jobs:
+  update-coin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run script
+        run: python update_coin.py
