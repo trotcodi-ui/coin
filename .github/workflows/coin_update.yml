@@ -2,9 +2,11 @@ name: Coin Premium Update
 
 on:
   schedule:
-    # 30분 간격으로 실행 (매시 5분, 35분)
     - cron: '5,35 * * * *'
-  workflow_dispatch: # 수동 실행 버튼
+  workflow_dispatch:
+
+permissions: # 깃허브에 파일을 쓸 수 있는 권한 추가
+  contents: write
 
 jobs:
   update-coin:
@@ -19,3 +21,10 @@ jobs:
         run: pip install requests
       - name: Run script
         run: python update_coin.py
+      - name: Commit and Push # 변경된 JSON 파일을 깃허브에 반영
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add coin_data.json
+          git commit -m "Update coin data" || exit 0
+          git push
