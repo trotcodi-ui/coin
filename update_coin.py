@@ -2,7 +2,7 @@ import requests
 import json
 
 # [본인의 웹 앱 URL로 꼭 확인하세요!]
-WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwlpTg25tibNN3zgQ4UGLX45pqokONs-U1jVT3sbbB1NRZnRyG4M_LDL4yR6GYUecqVyg/exec"
+WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwIpTg25tibNN3zgQ4UGLX45pqokONs-U1jVT3sbBb1NRZnRyG4M_LDL4yR6GYUecqVyg/exec"
 
 def main():
     # 1. 테스트용 데이터 생성 (실제 데이터 수집 코드 대신 우선 테스트)
