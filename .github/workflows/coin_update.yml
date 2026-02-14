@@ -5,7 +5,7 @@ on:
     - cron: '5,35 * * * *'
   workflow_dispatch:
 
-permissions: # 깃허브에 파일을 쓸 수 있는 권한 추가
+permissions:
   contents: write
 
 jobs:
@@ -13,18 +13,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          
       - name: Install dependencies
         run: pip install requests
+        
       - name: Run script
         run: python update_coin.py
-      - name: Commit and Push # 변경된 JSON 파일을 깃허브에 반영
+        
+      - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add coin_data.json
-          git commit -m "Update coin data" || exit 0
-          git push
+          # 파일이 존재할 때만 git add 실행
+          if [ -f coin_data.json ]; then
+            git add coin_data.json
+            git commit -m "Update coin data" || echo "No changes to commit"
+            git push
+          else
+            echo "Error: coin_data.json not found"
+            exit 1
+          fi
